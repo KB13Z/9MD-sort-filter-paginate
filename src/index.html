@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/styles.css">
+    <title>My country list</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+    <h1 class="title is-1 has-text-centered p-2">My country list</h1>
+    <div class="columns has-text-centered is-size-3 p-2 px-6">
+        <div class="column">
+            <h3>Country</h3>
+            <input 
+                type="text"
+                class="input js-country-input is-medium my-2"
+                name="country"
+                id="countryInput"
+                autocomplete="country"
+            >
+        </div>
+        <div class="column">
+            <h3>Capital</h3>
+            <input 
+                type="text"
+                class="input js-capital-input is-medium my-2"
+                name="capital"
+                id="capitalInput"
+                autocomplete="capital"
+            >
+        </div>
+        <div class="column">
+            <h3>Currency</h3>
+            <input 
+                type="text"
+                class="input js-currency-input is-medium my-2" 
+                name="currency"
+                id="currencyInput"
+                autocomplete="currency"
+            >
+        </div>
+        <div class="column">
+            <h3>Language</h3>
+            <input 
+                type="text"
+                class="input js-language-input is-medium my-2"
+                name="language"
+                id="languageInput"
+                autocomplete="language"
+            >
+        </div>
+    </div>
+    <div class="button-wrapper has-text-centered">
+        <button class="button js-search-button is-black is-medium">Search</button>
+        <button class="button js-clear-button is-black is-medium is-hidden">Clear</button>
+    </div>
+    <div class="table-wrapper p-6">
+        <table class="table is-bordered is-fullwidth is-hoverable">
+            <thead class="table-head is-size-4 has-background-grey-light">
+                <tr>
+                    <th class="is-narrow js-head-column">
+                        Country
+                        <button class="button js-sort-button is-small has-background-grey-light" data-column="name">
+                            <img src="assets/images/arrow-up-down.svg" alt="Sort-icon" width="30" height="30">
+                        </button>
+                    </th>
+                    <th class="is-narrow js-head-column">
+                        Capital
+                        <button class="button js-sort-button is-small has-background-grey-light" data-column="capital">
+                            <img src="assets/images/arrow-up-down.svg" alt="Sort-icon" width="30" height="30">
+                        </button>
+                    </th>
+                    <th class="is-narrow js-head-column">
+                        Currency
+                        <button class="button js-sort-button is-small has-background-grey-light" data-column="currency">
+                            <img src="assets/images/arrow-up-down.svg" alt="Sort-icon" width="30" height="30">
+                        </button>
+                    </th>
+                    <th class="is-narrow js-head-column">
+                        Language
+                        <button class="button js-sort-button is-small has-background-grey-light" data-column="language">
+                            <img src="assets/images/arrow-up-down.svg" alt="Sort-icon" width="30" height="30">
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="table-body js-table-body has-background-white-ter">               
+            </tbody>
+        </table>
+    </div>
+    <div class="buttons-wrapper has-text-right pr-6 pb-6">
+        <button class="button js-previous-button is-medium is-black">Previous</button>
+        <button class="button js-next-button is-medium ml-3 is-black">Next</button>
+    </div>
+    <script src="/scripts.js"></script>
+</body>
+</html>

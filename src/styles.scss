@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0 auto;
+    background-color: azure;
+}
+
+th button.button {
+    border: none;
+    outline: none;
+}
+
+tr {
+    height: 60px;
+}
+
+.table-body {
+    font-size: 20px;
+}
