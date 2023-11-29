@@ -1,9 +1,3 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable no-param-reassign */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-else-return */
-/* eslint-disable max-len */
-
 class CountriesTable {
   tableBody: HTMLElement;
   currentPage: number;
@@ -34,11 +28,13 @@ class CountriesTable {
     this.clearButton.addEventListener('click', () => this.clearSearch());
   }
 
-  fetchCountriesData = (): Promise<{ name: string, capital: string, currency: { name: string, symbol: string}, language: { name: string } }[]> => fetch('http://localhost:3004/countries').then((response) => response.json());
+  fetchCountriesData(): Promise<{ name: string, capital: string, currency: { name: string, symbol: string}, language: { name: string } }[]> {
+    return fetch('http://localhost:3004/countries').then((response) => response.json());
+  }
 
-  fetchTotalCountries = (): Promise<number> => this.fetchCountriesData().then((data) => data.length);
+  fetchTotalCountries(): Promise<number> { return this.fetchCountriesData().then((data) => data.length); }
 
-  populateTable = (data: { name: string, capital: string, currency: { name: string, symbol: string}, language: { name: string } }[]): void => {
+  populateTable(data: { name: string, capital: string, currency: { name: string, symbol: string}, language: { name: string } }[]): void {
     const startIndex = (this.currentPage - 1) * this.countriesPerPage;
     const endIndex = startIndex + this.countriesPerPage;
     const countriesToShow = data.slice(startIndex, endIndex);
@@ -52,9 +48,9 @@ class CountriesTable {
     });
 
     this.updatePagination();
-  };
+  }
 
-  updatePagination = (): void => {
+  updatePagination(): void {
     const previousBtn = document.querySelector('.js-previous-button');
     const nextBtn = document.querySelector('.js-next-button');
 
@@ -72,9 +68,9 @@ class CountriesTable {
     } else {
       nextBtn.classList.remove('is-hidden');
     }
-  };
+  }
 
-  sortTable = (column: string): void => {
+  sortTable(column: string): void {
     if (this.currentSortColumn === column) {
       this.currentSortOrder = this.currentSortOrder === 'asc' ? 'desc' : 'asc';
     } else {
@@ -88,27 +84,27 @@ class CountriesTable {
 
       if (this.currentSortOrder === 'asc') {
         return valueA.localeCompare(valueB);
-      } else {
-        return valueB.localeCompare(valueA);
       }
+      return valueB.localeCompare(valueA);
     });
 
     this.populateTable(this.countriesData);
-  };
+  }
 
-  getColumnValue = (data: any, column: string): string => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getColumnValue(data: any, column: string): string {
     if (column === 'name' || column === 'capital') {
       return data[column];
-    } else if (column === 'currency') {
+    } if (column === 'currency') {
       return `${data.currency.name}, ${data.currency.symbol}`;
-    } else if (column === 'language') {
+    } if (column === 'language') {
       return data.language.name;
     }
 
     return '';
-  };
+  }
 
-  search = (): void => {
+  search(): void {
     const countryText = this.countryInput.value.toLowerCase();
     const capitalText = this.capitalInput.value.toLowerCase();
     const currencyText = this.currencyInput.value.toLowerCase();
@@ -132,9 +128,9 @@ class CountriesTable {
       this.populateTable(this.countriesData);
       this.clearButton.classList.add('is-hidden');
     }
-  };
+  }
 
-  clearSearch = (): void => {
+  clearSearch(): void {
     this.countryInput.value = '';
     this.capitalInput.value = '';
     this.currencyInput.value = '';
@@ -147,17 +143,19 @@ class CountriesTable {
       this.currentPage = 1;
       this.populateTable(this.countriesData);
     });
-  };
+  }
 
-  init = (): Promise<void> => this.fetchCountriesData().then((data) => {
-    this.countriesData = data;
-    this.populateTable(this.countriesData);
-    this.updatePagination();
+  init(): Promise<void> {
+    return this.fetchCountriesData().then((data) => {
+      this.countriesData = data;
+      this.populateTable(this.countriesData);
+      this.updatePagination();
 
-    this.searchButton.addEventListener('click', () => {
-      this.search();
+      this.searchButton.addEventListener('click', () => {
+        this.search();
+      });
     });
-  });
+  }
 
   nextPage(): void {
     const totalSearchResults = this.countriesData.length;
